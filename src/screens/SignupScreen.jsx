@@ -1,41 +1,26 @@
-import React, { useState, useContext } from 'react';
-import { Text, Input, Button } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
+import React, { useContext } from 'react';
+import { Text } from 'react-native-elements';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../context/authContext';
-import Spacer from '../components/spacer';
+import Spacer from '../components/Spacer';
+import AuthForm from '../components/AuthForm';
 
 const SignupScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign up for Tracker</Text>
-      </Spacer>
-      <Input
-        autoCapitalize="none"
-        autoCorrect={false}
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
+      <AuthForm
+        headerText="Sign up for Tracker"
+        errorMessage={state.errorMessage}
+        submitButtonText="Sign Up"
+        onSubmit={signup}
       />
-      <Spacer />
-      <Input
-        secureTextEntry
-        autoCapitalize="none"
-        autoCorrect={false}
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-      />
-      {state.errorMessage ? (
-        <Text style={styles.error}>{state.errorMessage}</Text>
-      ) : null}
-      <Spacer>
-        <Button title="Sign Up" onPress={() => signup({ email, password })} />
-      </Spacer>
+      <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+        <Spacer>
+          <Text style={styles.link}>Already have an account? Sign in</Text>
+        </Spacer>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -50,11 +35,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 250
   },
-  error: {
-    fontSize: 16,
-    color: 'red',
-    marginLeft: 15,
-    marginTop: 15
+  link: {
+    color: 'blue'
   }
 });
 
