@@ -6,12 +6,12 @@ import { Provider as AuthProvider } from './src/context/authContext';
 import { Provider as LocationProvider } from './src/context/locationContext';
 import { setNavigator } from './src/navigationRef';
 import AccountScreen from './src/screens/AccountScreen';
+import LoadingScreen from './src/screens/LoadingScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
-import LoadingScreen from './src/screens/LoadingScreen';
 
 const switchNavigator = createSwitchNavigator({
   Loading: LoadingScreen,
